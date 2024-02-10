@@ -17,11 +17,11 @@ export default function RequestScreen({ navigation, route }) {
         latitude: origin.latitude,
         longitude: origin.longitude
     })
-    const { destination, dispatchDestination } = useContext(DestinationContext)
-    const [userDestination, setUserDestination] = useState({
-        latitude: destination.latitude,
-        longitude: destination.longitude
-    })
+    // const { destination, dispatchDestination } = useContext(DestinationContext)
+    // const [userDestination, setUserDestination] = useState({
+    //     latitude: destination.latitude,
+    //     longitude: destination.longitude
+    // })
 
     const bottomsheet1 = useRef(1);
 
@@ -33,11 +33,7 @@ export default function RequestScreen({ navigation, route }) {
             latitude: origin.latitude,
             longitude: origin.longitude
         });
-        setUserDestination({
-            latitude: destination.latitude,
-            longitude: destination.longitude
-        })
-    }, [origin, destination])
+    }, [origin])
 
 
     const renderFlatListItems = useCallback(({ item }) => (
@@ -120,8 +116,8 @@ export default function RequestScreen({ navigation, route }) {
 
                 </View>
             </View>
-            <MapComponent userOrigin={userOrigin} userDestination={userDestination} />
-            <BottomSheet
+            <MapComponent userOrigin={userOrigin} />
+            {/* <BottomSheet
                 ref={bottomsheet1}
                 index={route.params.state}
                 snapPoints={snapPoints1}
@@ -178,7 +174,7 @@ export default function RequestScreen({ navigation, route }) {
                         </View>
                     }
                 />
-            </BottomSheet>
+            </BottomSheet> */}
         </View>
     )
 }
