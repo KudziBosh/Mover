@@ -15,14 +15,27 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier":"com.uberclone",
+      "config":{
+        "googleMapsApiKey" :"AIzaSyBLyK2QTiLv9K3EiJg7tVOIDGt0VTzgJyo"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+     "package": "com.mover.app",
+     "versionCode": 1,
+     "config": {
+      "googleMaps": {
+        "apiKey": "AIzaSyBLyK2QTiLv9K3EiJg7tVOIDGt0VTzgJyo"
       }
+     },
+     "permissions":["ACCESS_COARSE_LOCATION","ACCESS_FINE_LOCATION","FOREGROUND_SERVICE"]
     },
+
     "web": {
       "favicon": "./assets/favicon.png"
     }
