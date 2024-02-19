@@ -58,7 +58,7 @@ const HomeScreen = ({navigation}) => {
             </View>
             <ScrollView bounces ={false}>
                 <View style ={styles.home}>
-                    <Text style = {styles.text1}>We have the rigth Truck for you</Text>
+                    <Text style = {styles.text1}>We have the right Truck for you</Text>
                     <View style ={styles.view1}>
                         <View  style ={styles.view8}>
                             <Text style ={styles.text2}>Relax and let us handle the heavy lifting</Text>

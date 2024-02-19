@@ -7,33 +7,45 @@ import { colors, parameters } from '../global/styles'
 import { rideData } from '../global/data';
 import { OriginContext, DestinationContext } from '../contexts/contexts';
 
+
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 
 export default function RequestScreen({ navigation, route }) {
+
     const { origin, dispatchOrigin } = useContext(OriginContext)
     const [userOrigin, setUserOrigin] = useState({
         latitude: origin.latitude,
         longitude: origin.longitude
     })
-    // const { destination, dispatchDestination } = useContext(DestinationContext)
-    // const [userDestination, setUserDestination] = useState({
-    //     latitude: destination.latitude,
-    //     longitude: destination.longitude
-    // })
+    const { destination, dispatchDestination } = useContext(DestinationContext)
+    const [userDestination, setUserDestination] = useState({
+        latitude: destination.latitude,
+        longitude: destination.longitude
+    })
 
     const bottomsheet1 = useRef(1);
 
     const snapPoints1 = useMemo(() => ['70%'], [])
-    const handleSheetChange1 = useCallback((index) => { }, [])
+    const handleSheetChange1 = useCallback((index) => { 
+        if (index === 0) {
+            bottomsheet1.current.snapTo(1)
+        }
+
+    }, [])
 
     useEffect(() => {
         setUserOrigin({
             latitude: origin.latitude,
             longitude: origin.longitude
         });
-    }, [origin])
+        setUserDestination({
+            latitude: destination.latitude,
+            longitude: destination.longitude
+        })
+    }, [origin, destination])
+
 
 
     const renderFlatListItems = useCallback(({ item }) => (
@@ -116,8 +128,15 @@ export default function RequestScreen({ navigation, route }) {
 
                 </View>
             </View>
-            <MapComponent userOrigin={userOrigin} />
-            {/* <BottomSheet
+            <MapComponent
+                userOrigin={userOrigin}
+                userDestination={userDestination}
+                showsUserLocation = {true}
+                followsUserLocation = {true}
+            />
+            
+
+            <BottomSheet
                 ref={bottomsheet1}
                 index={route.params.state}
                 snapPoints={snapPoints1}
@@ -174,7 +193,7 @@ export default function RequestScreen({ navigation, route }) {
                         </View>
                     }
                 />
-            </BottomSheet> */}
+            </BottomSheet>
         </View>
     )
 }
