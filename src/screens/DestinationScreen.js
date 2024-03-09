@@ -7,25 +7,29 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { OriginContext, DestinationContext } from '../contexts/contexts';
 
-const SCREEN_HEIGHT = Dimensions.get('window').height;
-const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;//Get the height of the screen
+const SCREEN_WIDTH = Dimensions.get('window').width;//Get the width of the screen
 
+// Set the geolocation to the react-native-geolocation-service
 navigator.geolocation = require('react-native-geolocation-service');
 
+
+// The DestinationScreen component for when the customer wants to set the destination
 const DestinationScreen = ({ navigation }) => {
 
-
+  // Get the dispatchOrigin and dispatchDestination from the OriginContext and DestinationContext
   const { dispatchOrigin } = useContext(OriginContext);
   const { dispatchDestination } = useContext(DestinationContext)
-
+  // Create a reference to the textInput1 and textInput2
   const textInput1 = useRef(4);
   const textInput2 = useRef(5);
-
+  // Set the default destination to false
   const [destination, setDestination] = useState(false)
 
-
+  // The view for the DestinationScreen
   return (
     <View style={styles.view2}>
+      {/* This is the view for the back button */}
       <View style={styles.view1}>
         <Icon
           type="material-community"
@@ -35,7 +39,9 @@ const DestinationScreen = ({ navigation }) => {
           onPress={() => navigation.goBack()}
         />
       </View>
+      {/* This is the view for the destination input which includes a profile picture an icon and a text input*/}
       <TouchableOpacity>
+        {/* This is the profile picture of the User */}
         <View style={{ top: 25, alignItems: "center" }}>
           <View style={styles.view3}>
             <Avatar
@@ -44,6 +50,7 @@ const DestinationScreen = ({ navigation }) => {
               size={30}
               source={require('../../assets/blankProfilePic.jpg')}
             />
+            {/* This is the title of the Text Box */}
             <Text style={{ marginLeft: 5 }}>For Someone</Text>
             <Icon
               type="material-community"
@@ -54,7 +61,8 @@ const DestinationScreen = ({ navigation }) => {
           </View>
         </View>
       </TouchableOpacity>
-
+      {/* This is the view for the text input that uses google 
+       places auto complete to get the destinations */}
       {destination === false &&
         <GooglePlacesAutocomplete
           nearbyPlacesAPI="GooglePlacesSearch"

@@ -5,6 +5,10 @@ import { OriginContextProvider,DestinationContextProvider } from './src/contexts
 
 
 
+/**
+ * The main component of the application.
+ * @returns {JSX.Element} The rendered App component.
+ */
 const App = () => {
   return (
     <DestinationContextProvider>

@@ -25,26 +25,47 @@ export default function RequestScreen({ navigation, route }) {
         longitude: destination.longitude
     })
 
-    const bottomsheet1 = useRef(1);
+    const bottomSheet1 = useRef(null);
 
-    const snapPoints1 = useMemo(() => ['70%'], [])
-    const handleSheetChange1 = useCallback((index) => { 
-        if (index === 0) {
-            bottomsheet1.current.snapTo(1)
-        }
-
-    }, [])
+    const snapPoints1 = useMemo(() => ['50%'], [])
 
     useEffect(() => {
-        setUserOrigin({
-            latitude: origin.latitude,
-            longitude: origin.longitude
-        });
-        setUserDestination({
-            latitude: destination.latitude,
-            longitude: destination.longitude
-        })
-    }, [origin, destination])
+        if (origin && origin.latitude && origin.longitude) {
+            setUserOrigin({
+                latitude: origin.latitude,
+                longitude: origin.longitude
+            });
+        }
+        if (destination && destination.latitude && destination.longitude) {
+            setUserDestination({
+                latitude: destination.latitude,
+                longitude: destination.longitude
+            });
+        }
+
+
+    }, [origin, destination]);
+
+    // useEffect(() => {
+    //     // Check if geolocation is supported
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(
+    //             position => {
+    //                 // Handle successful position retrieval
+    //                 setLatitude(position.coords.latitude);
+    //                 setLongitude(position.coords.longitude);
+    //             },
+    //             error => {
+    //                 // Handle geolocation error
+    //                 console.error("Error getting geolocation:", error);
+    //             }
+    //         );
+    //     } else {
+    //         console.error("Geolocation is not supported on this device.");
+    //     }
+    // }, 
+    // []); // Empty dependency array ensures this effect runs only once after initial render
+
 
 
 
@@ -131,17 +152,21 @@ export default function RequestScreen({ navigation, route }) {
             <MapComponent
                 userOrigin={userOrigin}
                 userDestination={userDestination}
-                showsUserLocation = {true}
-                followsUserLocation = {true}
+                showsUserLocation={true}
+                followsUserLocation={true}
+                // set intial region to the user's location
+                initialRegion={{
+                    latitude: userOrigin.latitude,
+                    longitude: userOrigin.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                }}
             />
-            
-
+            {destination.latitude &&
             <BottomSheet
-                ref={bottomsheet1}
-                index={route.params.state}
-                snapPoints={snapPoints1}
-                onChange={handleSheetChange1}
-
+                ref={bottomSheet1}
+                // index={route.params.state}
+                snapPoints={['10%', '50%']}
             >
                 <BottomSheetFlatList
                     keyboardShouldPersistTaps='always'
@@ -151,49 +176,47 @@ export default function RequestScreen({ navigation, route }) {
                     contentContainerStyle={styles.contentContainer}
                     ListHeaderComponent={<View style={styles.view10}>
                         <View style={styles.view11}>
-                            <Icon
-                                type="material-community"
-                                name="star"
-                                color={colors.white}
-                                size={20}
+                            <Image
+                                source={require('../../assets/Isuzu.jpeg')}
+                                style={styles.image3}
+                                resizeMode='contain'
                             />
                         </View>
                         <View>
-                            <Text style={styles.text9}>Saved Places</Text>
+                            <Text style={styles.text9}>Isuzu 3 Tonne</Text>
                         </View>
                     </View>}
                     ListFooterComponent={
                         <View>
                             <View style={styles.view10}>
                                 <View style={styles.view11}>
-                                    <Icon
-                                        type="material-community"
-                                        name="map-marker"
-                                        color={colors.white}
-                                        size={20}
+                                    <Image
+                                        source={require('../../assets/JAC.jpg')} 
+                                        style={styles.image3}
+                                        resizeMode='contain'
                                     />
                                 </View>
                                 <View>
-                                    <Text style={styles.text9}>Set location on map</Text>
+                                    <Text style={styles.text9}>JAC 2 Tonne truck</Text>
                                 </View>
                             </View>
                             <View style={styles.view10}>
                                 <View style={styles.view11}>
-                                    <Icon
-                                        type="material-community"
-                                        name="skip-next"
-                                        color={colors.white}
-                                        size={20}
+                                    <Image
+                                        source={require('../../assets/isu.jpeg')}
+                                        style={styles.image3}
+                                        resizeMode='contain'
                                     />
                                 </View>
                                 <View>
-                                    <Text style={styles.text9}>Enter destination later</Text>
+                                    <Text style={styles.text9}>Isuzu 5 tonne</Text>
                                 </View>
                             </View>
                         </View>
                     }
                 />
             </BottomSheet>
+}
         </View>
     )
 }
@@ -515,7 +538,9 @@ const styles = StyleSheet.create({
     ,
     text9: {
         fontSize: 15,
-        color: colors.grey1
+        color: colors.grey1,
+        marginLeft: 30,
+        fontWeight: "bold"
     },
 
 
@@ -565,6 +590,15 @@ const styles = StyleSheet.create({
     text10: {
         color: colors.grey2,
         paddingLeft: 10
+    },
+
+    image3: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        marginRight: 10,
+        marginLeft: 20
+
     }
 
 })

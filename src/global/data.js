@@ -1,7 +1,7 @@
-export const filterData = [ {name:"Ride",image: require('../../assets/ride.png'), id:"0"},
-                            {name:"Food",image:require("../../assets/food.png"),id:"1"},
-                            {name:"Package",image:require("../../assets/package.png"),id:"2"},
-                            {name:"Reserve",image:require("../../assets/reserve.png"),id:"3"}
+export const filterData = [ {name:"Movers",image: require('../../assets/mover.jpg'), id:"0"},
+                            {name:"Perishables",image:require("../../assets/fuits.jpg"),id:"1"},
+                            {name:"Packages",image:require("../../assets/package.png"),id:"2"},
+                            {name:"Refrigerated\nTrucks",image:require("../../assets/snow.jpg"),id:"3"}
                           
                            ];
 

@@ -77,7 +77,7 @@ const HomeScreen = ({navigation}) => {
                     </View>
                 </View>
 {/* title of the flatlist */}
-                <Text style ={styles.text4}> How Can we help ?</Text>
+                <Text style ={styles.text4}> HOW CAN WE HELP YOU TODAY ?</Text>
                 <View >
                         <FlatList 
                             numRows ={4}
@@ -126,14 +126,13 @@ const HomeScreen = ({navigation}) => {
                                 />
                             </View>
                             <View>
-                                <Text style ={{fontSize:18,color:colors.black}}>32 Olivia Rd</Text>
-                                <Text style ={{color:colors.grey3}}>Klipfontein 83-Ir, Boksburg</Text>
+                                <Text style ={{fontSize:18,color:colors.black}}>23 Takawira Rd</Text>
+                                <Text style ={{color:colors.grey3}}>Harare CBD, Harare</Text>
                             </View>
                         </View>
                         <View>
                             <Icon type = "material-community"
                                         name ="chevron-right"
-                                        color = {colors.grey}
                                         size = {26}
                                     />
                             </View>
@@ -149,8 +148,8 @@ const HomeScreen = ({navigation}) => {
                                 />
                             </View>
                             <View>
-                                <Text style ={{fontSize:18,color:colors.black}}>32 Olivia Rd</Text>
-                                <Text style ={{color:colors.grey3}}>Klipfontein 83-Ir, Boksburg</Text>
+                                <Text style ={{fontSize:18,color:colors.black}}>32 Random Drive</Text>
+                                <Text style ={{color:colors.grey3}}>North Eastlea, Harare</Text>
                             </View>
                         </View>
                         <View>
@@ -266,7 +265,7 @@ const styles = StyleSheet.create({
     },
     card:{
      alignItems:"center",
-     margin:SCREEN_WIDTH/22
+     margin:SCREEN_WIDTH*0.03
     
     },
     
@@ -342,6 +341,7 @@ const styles = StyleSheet.create({
           color:colors.black,
           marginLeft:20,
           marginBottom:20,
+          marginTop:20
         },
     
     icon1:  {marginLeft:10,
